@@ -17,7 +17,8 @@ import { ViewEditPackComponent } from './components/view-edit-pack/view-edit-pac
   ],
   exports: [
     CustomisePackComponent,
-    CustomiseItemsTableComponent
+    CustomiseItemsTableComponent,
+    ViewEditPackComponent
   ],
 })
 export class CustomisePackModule { }

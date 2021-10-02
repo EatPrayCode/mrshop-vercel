@@ -191,6 +191,7 @@ export class CustomiseItemsTableComponent implements OnChanges {
   }
 
   openViewEditPackDialog(pack: any): void {
+    debugger;
     let dialogRef = this.dialog.open(ViewEditPackComponent, {
       hasBackdrop: true,
       disableClose: false,
