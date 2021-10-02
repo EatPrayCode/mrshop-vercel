@@ -1,4 +1,3 @@
-/// <reference types="@types/googlemaps" />
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
@@ -35,7 +34,6 @@ export class CheckoutComponent implements OnInit {
   constructor(
     public appService: AppService,
     private fb: FormBuilder,
-    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
   ) { }
 
@@ -144,24 +142,7 @@ export class CheckoutComponent implements OnInit {
       });
     }
   }
-  private placesAutocomplete() {
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.addressAutocomplete.nativeElement, {
-        types: ["address"]
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          };
-          this.lat = place.geometry.location.lat();
-          this.lng = place.geometry.location.lng();
-          this.getAddress();
-        });
-      });
-    });
-  }
+
 
   // public getAddress(){    
   //   this.mapsAPILoader.load().then(() => {

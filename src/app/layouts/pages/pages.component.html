@@ -77,9 +77,11 @@
         </perfect-scrollbar>
     </mat-drawer>
     <mat-drawer-content>
-        <app-breadcrumb></app-breadcrumb>
+
         <router-outlet></router-outlet>
+    
     </mat-drawer-content>
+
 </mat-drawer-container>
 
 <bottom-nav-wrapper bottomNavHeight="38px" topNavHeight="55px" bottomNavBreakpoint="959px">
@@ -101,7 +103,7 @@
             thumb_up
         </bottom-nav-item>
 
-        <bottom-nav-item class="nav-item-mobile" [link]="'account/my-properties'" [exact]="true" label="My Account">
+        <bottom-nav-item class="nav-item-mobile" [link]="'checkout'" [exact]="true" label="Checkout">
             thumb_up
         </bottom-nav-item>
 

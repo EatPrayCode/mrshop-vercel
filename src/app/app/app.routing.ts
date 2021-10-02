@@ -17,21 +17,6 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: '',
-    component: PagesComponent, children: [
-      { path: 'checkout', loadChildren: () => import('./../features/checkout/checkout.module').then(m => m.CheckoutModule) },
-      // {
-      // path: 'dashboard',
-      // loadChildren: () => import('./modules/features/dashboard/dashboard.module').then((m) => m.DashboardModule),
-      // canActivate: [AuthGuard],
-      // resolve: {
-      //   routeLocation: AppResolver
-      // },
-      // },
-
-    ]
-  },
 
   {
     path: '',
@@ -40,6 +25,7 @@ const routes: Routes = [
       // { path: 'about', loadChildren: () => import('./../features/about/about.module').then(m => m.AboutModule) },
       // { path: 'contact', loadChildren: () => import('./../features/contact/contact.module').then(m => m.ContactModule) },
       // { path: 'compare', loadChildren: () => import('./../features/compare/compare.module').then(m => m.CompareModule) },
+      { path: 'checkout', loadChildren: () => import('./../features/checkout/checkout.module').then(m => m.CheckoutModule) },
       { path: 'faq', loadChildren: () => import('./../features/faq/faq.module').then(m => m.FaqModule) },
       { path: 'terms-conditions', loadChildren: () => import('./../features/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },
       // { path: 'cart', loadChildren: () => import('./../features/cart/cart.module').then(m => m.CartModule) },
