@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;700&display=swap");
+
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.card {
+  box-sizing: border-box;
+  padding: 0.5rem;
+  position: relative;
+  box-shadow: 0px 2px 18px -4px rgba(0, 0, 0, 0.75);
+  align-items: center;
+  display: flex;
+  width: 330px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.card,
+.card img {
+  border-radius: 1rem;
+}
+
+.top-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #7f7f7f;
+  font-size: 0.9rem;
+}
+
+.card img {
+  width: 5rem;
+  margin-right: 1.3rem;
+}
+.card .name {
+  font-size: 1.2rem;
+}
+.card .location {
+  font-size: 0.7rem;
+  word-spacing: 0.2rem;
+  font-weight: normal;
+}
+.card .location i {
+  color: #f2d1e1;
+}
+
+.cards-container {
+  width: 30%;
+  margin: 0 auto;
+  padding-top: 20px;
+}

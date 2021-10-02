@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import "./assets/styles/spinner";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./assets/styles/base";
+@import "./assets/styles/spaces";
+@import "./assets/styles/theme";
+@import "./assets/styles/rtl";
+@import "./assets/styles/admin";
+
+@import "./../node_modules/ng-bottom-navigation/ng-bottom-navigation.scss";
+
+app-pages .full-screen {
+    height: auto !important; // this thing
+}
+
+app-checkout .mat-horizontal-stepper-header-container {
+    // height: 15%;
+}
+
+app-checkout .mat-stepper-horizontal {
+    height: 100%;
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+}
+
+app-checkout .mat-horizontal-content-container {
+    height: 85%;
+    // width: 100%;
+    // padding: 10px !important;
+}
+
+app-checkout .mat-horizontal-stepper-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+bottom-nav {
+    border-top-style: 0 px solid;
+}
+
+.mat-horizontal-stepper-header-container {
+    margin-bottom: 20px;
+}
+
+.mat-horizontal-stepper-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: -15px;
+}
+.mat-step-label {
+    position: relative;
+    top: 10px;
+}
+
+.mat-stepper-horizontal-line {
+    margin: 0 -30px !important;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon,
+.mat-horizontal-stepper-header .mat-step-icon-not-touched {
+    margin-right: 0 !important;
+}
+
+.mat-step-text-label {
+    font-size: 12px;
+}
