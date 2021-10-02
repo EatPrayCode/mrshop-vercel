@@ -14,6 +14,7 @@ export class PagesComponent implements OnInit {
   public settings:Settings;
   public menuItems:Array<any> = [];
   public toggleSearchBar:boolean = false;
+ 
   constructor(public appSettings:AppSettings, 
               public router:Router,
               private menuService: MenuService){        
@@ -21,10 +22,10 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {  
-    if(window.innerWidth <= 960){ 
-      this.settings.adminSidenavIsOpened = false;
-      this.settings.adminSidenavIsPinned = false;
-    }; 
+    // if(window.innerWidth <= 960){ 
+    //   this.settings.adminSidenavIsOpened = false;
+    //   this.settings.adminSidenavIsPinned = false;
+    // }; 
     setTimeout(() => {
       this.settings.theme = 'blue'; 
     });
@@ -34,7 +35,7 @@ export class PagesComponent implements OnInit {
   ngAfterViewInit(){  
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.scrollToTop();
+        // this.scrollToTop();
       } 
       if(window.innerWidth <= 960){
         this.sidenav.close(); 
@@ -47,34 +48,34 @@ export class PagesComponent implements OnInit {
     this.sidenav.toggle();
   }
 
-  public scrollToTop(){
-    var scrollDuration = 200;
-    var scrollStep = -window.pageYOffset  / (scrollDuration / 20);
-    var scrollInterval = setInterval(()=>{
-      if(window.pageYOffset != 0){
-         window.scrollBy(0, scrollStep);
-      }
-      else{
-        clearInterval(scrollInterval); 
-      }
-    },10);
-    if(window.innerWidth <= 768){
-      setTimeout(() => {  
-        window.scrollTo(0,0); 
-      });
-    }
-  }
+  // public scrollToTop(){
+  //   var scrollDuration = 200;
+  //   var scrollStep = -window.pageYOffset  / (scrollDuration / 20);
+  //   var scrollInterval = setInterval(()=>{
+  //     if(window.pageYOffset != 0){
+  //        window.scrollBy(0, scrollStep);
+  //     }
+  //     else{
+  //       clearInterval(scrollInterval); 
+  //     }
+  //   },10);
+  //   if(window.innerWidth <= 768){
+  //     setTimeout(() => {  
+  //       window.scrollTo(0,0); 
+  //     });
+  //   }
+  // }
 
-  @HostListener('window:resize')
-  public onWindowResize():void {
-    if(window.innerWidth <= 960){
-      this.settings.adminSidenavIsOpened = false;
-      this.settings.adminSidenavIsPinned = false; 
-    }
-    else{ 
-      this.settings.adminSidenavIsOpened = true;
-      this.settings.adminSidenavIsPinned = true;
-    }
-  }
+  // @HostListener('window:resize')
+  // public onWindowResize():void {
+  //   if(window.innerWidth <= 960){
+  //     this.settings.adminSidenavIsOpened = false;
+  //     this.settings.adminSidenavIsPinned = false; 
+  //   }
+  //   else{ 
+  //     this.settings.adminSidenavIsOpened = true;
+  //     this.settings.adminSidenavIsPinned = true;
+  //   }
+  // }
 
 }
