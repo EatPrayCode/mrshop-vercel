@@ -8,7 +8,7 @@ import { emailValidator } from '../../common/utils/app-validators';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  public contactForm: FormGroup;
+  public contactForm: FormGroup = new FormGroup({});
   public lat: number = 40.678178;
   public lng: number = -73.944158;
   public zoom: number = 12; 
