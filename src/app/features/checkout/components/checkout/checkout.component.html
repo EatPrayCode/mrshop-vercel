@@ -1,0 +1,203 @@
+<div class="checkout-container">
+
+  <div class="theme-container stepper-container">
+
+    <mat-card ngClass.lt-lg="p-0 card-container">
+
+      <mat-horizontal-stepper #horizontalStepper class="checkout" (selectionChange)="onSelectionChange($event)">
+
+        <mat-step label="Customise">
+
+          <div class="step-content">
+            <app-customise-items-table [inputData]="inputData"></app-customise-items-table>
+          </div>
+
+          <div class="nav-button-content">
+            <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+              <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <mat-icon>navigate_before</mat-icon>
+                <span class="mx-1 uppercase">Back</span>
+              </button>
+              <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <span class="mx-1 uppercase">Next</span>
+                <mat-icon>navigate_next</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </mat-step>
+
+        <mat-step label="Address">
+
+          <div class="step-content">
+
+            <form [formGroup]="addressForm" fxLayout="row wrap">
+
+              <div fxFlex="100" class="px-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
+                  <mat-label>Location</mat-label>
+                  <input matInput placeholder="Enter a location" formControlName="location" autocomplete="off"
+                    #addressAutocomplete>
+                  <button mat-button matSuffix
+                    mat-icon-button
+                    type="button">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+
+              <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>City</mat-label>
+                  <mat-select placeholder="Select City..." formControlName="city" (selectionChange)="onSelectCity()"
+                    required>
+                    <mat-option *ngFor="let city of cities" [value]="city">
+                      {{city.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Zip Code</mat-label>
+                  <input matInput placeholder="exp. 98104" autocomplete="off" formControlName="zipCode">
+                </mat-form-field>
+              </div>
+
+              <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Neighborhood</mat-label>
+                  <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood" multiple
+                    (selectionChange)="onSelectNeighborhood()">
+                    <mat-option
+                      *ngFor="let neighborhood of neighborhoods"
+                      [value]="neighborhood">
+                      {{neighborhood?.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Street</mat-label>
+                  <mat-select placeholder="Select Street..." formControlName="street" multiple>
+                    <mat-option
+                      *ngFor="let street of streets"
+                      [value]="street">
+                      {{street?.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+            </form>
+
+          </div>
+
+          <div class="nav-button-content">
+            <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+              <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <mat-icon>navigate_before</mat-icon>
+                <span class="mx-1 uppercase">Back</span>
+              </button>
+              <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <span class="mx-1 uppercase">Next</span>
+                <mat-icon>navigate_next</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </mat-step>
+
+        <mat-step label="Payment">
+
+          <div class="step-content">
+
+            <form [formGroup]="paymentForm" fxLayout="row wrap">
+
+              <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Payment type</mat-label>
+                  <mat-select placeholder="Select Street..." formControlName="street" multiple>
+                    <mat-option value="COD">COD</mat-option>
+                    <mat-option value="payylater">Pay Later</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+            </form>
+
+          </div>
+
+          <div class="nav-button-content">
+            <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+              <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <mat-icon>navigate_before</mat-icon>
+                <span class="mx-1 uppercase">Back</span>
+              </button>
+              <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <span class="mx-1 uppercase">Next</span>
+                <mat-icon>navigate_next</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </mat-step>
+
+        <mat-step label="Success">
+
+          <div class="step-content">
+
+            <div fxLayout="column" fxLayoutAlign="center center" class="pt-5 text-center">
+              <button mat-fab color="primary">
+                <mat-icon>check</mat-icon>
+              </button>
+              <h2 class="mt-3 uppercase">Congratulations!</h2>
+              <h2 class="my-3">Your Order <span
+                  class="primary-color">"Hello"</span> has been Placed
+              </h2>
+              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus dolor ante, ut
+                luctus mi faucibus a. Ut eu tincidunt neque. Proin porttitor id ligula id placerat. Integer nec nulla
+                varius, dapibus libero quis, semper eros. Aliquam erat volutpat. Proin volutpat tellus vel purus
+                interdum euismod.</p>
+            </div>
+
+          </div>
+
+          <div class="nav-button-content">
+            <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+              <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <mat-icon>navigate_before</mat-icon>
+                <span class="mx-1 uppercase">Back</span>
+              </button>
+              <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center"
+                type="button">
+                <span class="mx-1 uppercase">Next</span>
+                <mat-icon>navigate_next</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </mat-step>
+
+      </mat-horizontal-stepper>
+
+    </mat-card>
+
+  </div>
+
+</div>

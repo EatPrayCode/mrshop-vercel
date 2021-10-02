@@ -1,0 +1,34 @@
+<div fxLayout="row">
+
+    <div fxLayout="column">
+        Category
+    </div>
+
+    <div fxLayout="column">
+        SubCategory
+    </div>
+</div>
+
+<div fxLayout="row">
+
+    <div fxLayout="column">
+        <div fxLayout="row" *ngFor="let item of categoriesNavItems"
+            [ngClass]="{'toggleMainColor': mainCategory.displayName === item.displayName}" fxFlex="50%">
+            <div (click)="selectMainCategory(item)" fxFlex.gt-sm="50%" fxFlex.lt-md="50%" fxLayoutAlign="center center"
+                fxFlexFill>
+                {{item.displayName}}
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="column">
+        <div fxLayout="row" *ngFor="let item of mainCategory?.children"
+            [ngClass]="{'toggleSubColor': subCategory.displayName === item.displayName}" fxFlex="50%">
+            <div (click)="selectSubCategory(item)" fxFlex.gt-sm="50%" fxFlex.lt-md="50%" fxLayoutAlign="center center"
+                fxFlexFill>
+                {{item.displayName}}
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,68 @@
+.wizard-card{
+    height: 95vh;
+    overflow-y: scroll;
+}
+.step-1-content{
+    flex-direction: column !important;
+    position: relative;
+    // overflow-y: scroll;
+}
+.nav-btns{
+    position: fixed;
+    bottom: 100px;
+    right: 150px;
+    left: 0;
+}
+@media screen and (max-width: 541px) {
+    .nav-btns{
+        position: fixed;
+        bottom: 150px;
+        right: 20px;
+        left: 0;
+
+    }
+    .step-content{
+        height: 50vh !important;
+        overflow-y: scroll;
+    }
+}
+.step-content{
+    height: 70%;
+    overflow-y: scroll;
+}
+.nav-button-content{
+    height: 10%;
+}
+
+.stepper-container{
+    height: 100%;
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+}
+
+.checkout-container{
+    height: 100%;
+    display: flex;
+    width: 100%;
+}
+
+
+.step-content {
+    height: 80%;
+    overflow-y: scroll;
+    // overflow-x: scroll;
+    width: 100%;
+    max-width: 100%;
+
+}
+.nav-button-content{
+    height: 20%;
+    padding: 0 40px;
+    width: 100%;
+
+}
+.card-container{
+    width: 100% !important;
+}

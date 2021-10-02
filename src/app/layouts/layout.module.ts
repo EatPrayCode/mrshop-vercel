@@ -11,25 +11,36 @@ import { NgBottomNavigationModule } from 'ng-bottom-navigation';
 
 import { BlankComponent } from './blank/blank.component';
 import { PagesComponent } from './pages/pages.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { FullScreenComponent } from './components/fullscreen/fullscreen.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
     BlankComponent,
-    PagesComponent
+    PagesComponent,
+    MenuComponent,
+    UserMenuComponent,
+    FullScreenComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     SharedModule,
     FormsModule,
-    DemoMaterialModule,
     ReactiveFormsModule,
     NgBottomNavigationModule,
     AuthModule,
   ],
   exports: [
     BlankComponent,
-    PagesComponent
+    PagesComponent,
+    MenuComponent,
+    UserMenuComponent,
+    FullScreenComponent,
+    BreadcrumbComponent
   ]
 })
 export class LayoutsModule { }

@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav #leftSidenav mode="side" opened>
+        <app-left-menu></app-left-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+
+        <div class="main_content">
+
+            <mat-toolbar class="mat-elevation-z8">
+
+                <a mat-button class="companyName" (click)="gotoPacks()">
+                    <span>Packs</span>
+                </a>
+
+                <a mat-button class="companyName" (click)="gotoServices()">
+                    <span>Services</span>
+                </a>
+
+                <app-customer-type></app-customer-type>
+
+            </mat-toolbar>
+
+            <div>
+                <a mat-bustton [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
+                    {{sort}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+                </a>
+                <mat-menu #sortMenu="matMenu" xPosition="before" class="app-dropdown" overlapTrigger="true">
+                    <span (mouseleave)="sortMenuTrigger.closeMenu()">
+                        <button mat-menu-item *ngFor="let sort of sortings" (click)="changeSorting(sort)">
+                            <span>{{sort}}</span>
+                        </button>
+                    </span>
+                </mat-menu>
+
+                <button color="accent" (click)="openPackSummaryDialog({})">
+                    Choose Preferences
+                </button>
+            </div>
+
+            <app-packs></app-packs>
+
+        </div>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
