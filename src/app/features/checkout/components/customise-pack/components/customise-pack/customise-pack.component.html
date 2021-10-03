@@ -1,138 +1,208 @@
-<h2>My List</h2>
+<div class="customize-pack-container">
+  <h2>My List</h2>
 
-<form [formGroup]="form">
-
-    <mat-form-field class="language-field">
-        <mat-select (ngModelChange)="changePackTemplate($event)" formControlName="packTemplate"
-            placeholder="Pack Template">
-            <mat-option *ngFor="let packTemplate of form.controls.packTemplates?.value;" [value]="packTemplate">
-                {{packTemplate.name}} 
-            </mat-option>
+  <form [formGroup]="form" class="form-wraper">
+    <div class="pack-config-wrapper flex-row">
+      <mat-form-field class="pack-field">
+        <mat-select
+          (ngModelChange)="changePackTemplate($event)"
+          formControlName="packTemplate"
+          placeholder="Pack Template"
+        >
+          <mat-option
+            *ngFor="let packTemplate of form.controls.packTemplates?.value"
+            [value]="packTemplate"
+          >
+            {{ packTemplate.name }}
+          </mat-option>
         </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="language-field">
-        <mat-select (ngModelChange)="changePackSize($event)" placeholder="Pack Size" formControlName="packSize">
-            <mat-option *ngFor="let size of form.controls.packSizes?.value;" [value]="size">
-                {{size.name}}
-             </mat-option>
+      </mat-form-field>
+      <mat-form-field class="pack-field">
+        <mat-select
+          (ngModelChange)="changePackTemplate($event)"
+          formControlName="packTemplate"
+          placeholder="Pack Template"
+        >
+          <mat-option
+            *ngFor="let packTemplate of form.controls.packTemplates?.value"
+            [value]="packTemplate"
+          >
+            {{ packTemplate.name }}
+          </mat-option>
         </mat-select>
-    </mat-form-field>
+      </mat-form-field>
 
+      <mat-form-field class="pack-field">
+        <mat-select
+          (ngModelChange)="changePackSize($event)"
+          placeholder="Pack Size"
+          formControlName="packSize"
+        >
+          <mat-option
+            *ngFor="let size of form.controls.packSizes?.value"
+            [value]="size"
+          >
+            {{ size.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="table-container-scroll">
+      <div
+        formArrayName="items"
+        class="flex-row"
+        *ngFor="
+          let items of form.controls.items?.value;
+          let i = index;
+          trackBy: trackFn
+        "
+      >
+        <div [formGroupName]="i" class="table-container flex-row">
+          <table style="width: 100%">
+            <tr>
+              <td>
+                Pack Name:
+                <input placeholder="Name" formControlName="name" />
+              </td>
+              <td colspan="2">
+                <input
+                  type="checkbox"
+                  (change)="changeCheckbox($event, i)"
+                  formControlName="isChecked"
+                />
+                Item Description
+              </td>
+            </tr>
 
-    <div formArrayName="items" *ngFor="let items of form.controls.items?.value; let i = index;trackBy:trackFn">
+            <tr>
+              <td class="td-border-bottom">
+                <mat-form-field class="language-field">
+                  <mat-select
+                    (ngModelChange)="changeBrand($event, i)"
+                    formControlName="brand"
+                    placeholder="Brand"
+                  >
+                    <mat-option
+                      *ngFor="
+                        let brand of (form.controls.items?.value)[i].brandsList
+                      "
+                      [value]="brand"
+                    >
+                      {{ brand.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
 
-        <div [formGroupName]="i">
+              <td class="td-border-bottom">
+                <mat-form-field class="language-field">
+                  <mat-select
+                    (ngModelChange)="changeVariant($event, i)"
+                    formControlName="variant"
+                    placeholder="Variant"
+                  >
+                    <mat-option
+                      *ngFor="
+                        let variant of (form.controls.items?.value)[i].brand
+                          ?.variantsList
+                      "
+                      [value]="variant"
+                    >
+                      {{ variant.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
 
-            <table style="width:100%">
-                <tr>
-                    <td>
-                        Pack Name:
-                        <input placeholder="Name" formControlName="name">
-                    </td>
-                    <td colspan="2">
-                        <input type="checkbox" (change)="changeCheckbox($event,i)" formControlName="isChecked">
-                        Item Description
-                    </td>
-                </tr>
+              <td class="td-border-bottom">
+                <mat-form-field class="language-field">
+                  <mat-select
+                    (ngModelChange)="doSomething($event)"
+                    placeholder="Budget"
+                  >
+                    <mat-option
+                      *ngFor="let language of languages"
+                      [value]="language"
+                    >
+                      {{ language.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-border-bottom">
+                <mat-form-field class="language-field">
+                  <mat-select
+                    (ngModelChange)="changeQuantity($event, i)"
+                    formControlName="quantity"
+                    placeholder="Quantity"
+                  >
+                    <mat-option
+                      *ngFor="
+                        let quantity of (form.controls.items?.value)[i]
+                          .quantityList
+                      "
+                      [value]="quantity"
+                    >
+                      {{ quantity.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
 
-                <tr>
-                    <td>
+              <td class="td-border-bottom">
+                Price Per Item
+                <input formControlName="pricePerItem" />
+              </td>
 
-                        <mat-form-field class="language-field">
-                            <mat-select (ngModelChange)="changeBrand($event, i)" formControlName="brand"
-                                placeholder="Brand">
-                                <mat-option *ngFor="let brand of (form.controls.items?.value)[i].brandsList;"
-                                    [value]="brand">
-                                    {{brand.value}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                    </td>
-
-                    <td>
-
-                        <mat-form-field class="language-field">
-                            <mat-select (ngModelChange)="changeVariant($event, i)" formControlName="variant"
-                                placeholder="Variant">
-                                <mat-option *ngFor="let variant of (form.controls.items?.value)[i].brand?.variantsList;"
-                                    [value]="variant">
-                                    {{variant.value}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                    </td>
-
-                    <td>
-
-                        <mat-form-field class="language-field">
-                            <mat-select (ngModelChange)="doSomething($event)" placeholder="Budget">
-                                <mat-option *ngFor="let language of languages" [value]="language">
-                                    {{language.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-
-                        <mat-form-field class="language-field">
-                            <mat-select (ngModelChange)="changeQuantity($event, i)" formControlName="quantity"
-                                placeholder="Quantity">
-                                <mat-option *ngFor="let quantity of (form.controls.items?.value)[i].quantityList;"
-                                    [value]="quantity">
-                                    {{quantity.value}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                    </td>
-
-                    <td>
-                        Price Per Item
-                        <input formControlName="pricePerItem">
-                    </td>
-
-                    <td>
-                        Total Price Per Item
-                        <input formControlName="totalPricePerItem">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" (change)="toggleBrandless($event,i)" formControlName="isBrandless">
-                        Brandless
-                    </td>
-                    <td>
-
-                        <mat-form-field appearance="fill">
-                            <mat-label>Choose Days</mat-label>
-                            <input matInput [matDatepicker]="picker">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-outline-dark">
-                            <i class="fa fa-trash"></i>
-                            Remove
-                        </button>
-                    </td>
-                </tr>
-            </table>
-
+              <td class="td-border-bottom">
+                Total Price Per Item
+                <input formControlName="totalPricePerItem" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="checkbox"
+                  (change)="toggleBrandless($event, i)"
+                  formControlName="isBrandless"
+                />
+                Brandless
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Choose Days</mat-label>
+                  <input matInput [matDatepicker]="picker" />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-dark">
+                  <i class="fa fa-trash"></i>
+                  Remove
+                </button>
+              </td>
+            </tr>
+          </table>
         </div>
+      </div>
     </div>
-
-    <div>
-        <input formControlName="packTotal">
+  </form>
+  <div class="pack-summary flex-column">
+    <!-- <input formControlName="packTotal"> -->
+    <div class="summary flex-row">
+      <div class="summary-content">Pack total : $10000</div>
+      <div class="summary-content">Total count: 56456599</div>
     </div>
-
-</form>
-
+    <div class="summary flex-row">
+      <div class="summary-content">Savings : $10000</div>
+      <div class="summary-content">Savings : $10000</div>
+    </div>
+  </div>
+</div>
 <!-- {{form.controls.packTemplate?.value|json}} -->
