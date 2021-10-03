@@ -20,5 +20,8 @@ import { ViewEditPackComponent } from './components/view-edit-pack/view-edit-pac
     CustomiseItemsTableComponent,
     ViewEditPackComponent
   ],
+  entryComponents:[
+    ViewEditPackComponent
+  ]
 })
 export class CustomisePackModule { }

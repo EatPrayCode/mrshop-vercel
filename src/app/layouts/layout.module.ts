@@ -15,6 +15,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { FullScreenComponent } from './components/fullscreen/fullscreen.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { CustomisePackModule } from '../features/checkout/components/customise-pack/customise-pack.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserMenuComponent } from './components/user-menu/user-menu.component';
     ReactiveFormsModule,
     NgBottomNavigationModule,
     AuthModule,
+    CustomisePackModule
   ],
   exports: [
     BlankComponent,
